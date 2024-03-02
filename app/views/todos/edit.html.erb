@@ -1,0 +1,34 @@
+<%= form_for @todo, url: todo_path(@todo), method: :put do |f| %>
+    <div class="border-b border-white/10 pb-12 ">
+      <h2 class="text-base font-semibold leading-7 text-white">Edit Todo Form</h2>
+      <p class="mt-1 text-sm leading-6 text-gray-400">Use form to add new todo's</p>
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="sm:col-span-3">
+          <label for="title" class="block text-sm font-medium leading-6 text-white">Title</label>
+          <div class="mt-2">
+            <%= f.text_field :title, placeholder: "Todo Title", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+          </div>
+        </div>
+      </div>
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="sm:col-span-3">
+          <label for="description" class="block text-sm font-medium leading-6 text-white">Description</label>
+          <div class="mt-2">
+            <%= f.text_field :description, placeholder: "Todo Description", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+          </div>
+        </div>
+      </div>
+      <div class="relative flex gap-x-3 mt-8">
+        <div class="flex h-6 items-center">
+          <%= f.check_box :is_completed, id:"is_completed", type:"checkbox", class:"h-4 w-4 rounded border-white/10 bg-white/5 text-indigo-600 focus:ring-indigo-600 focus:ring-offset-gray-900" %>
+        </div>
+        <div class="text-sm leading-6">
+          <label for="is_completed" class="font-medium text-white">Is Completed?</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 flex items-center justify-end gap-x-6">
+      <%= f.submit :Submit, class: "rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500" %>
+    </div>
+<% end %>
