@@ -2,13 +2,16 @@ class TodosController < ApplicationController
   before_action :require_login
   def index
     if current_user
-      @todos = current_user.todos.all
+      @todos = current_user.todos.all.paginate(page: params[:page], per_page: 5)
     end
   end
 
   def create
-    @todo = current_user.todos.create(todo_params)
-    if @todo.valid?
+    @todo = current_user.todos.build(todo_params)
+    if @todo.save
+      redirect_to root_path
+    else
+      flash[:error] = "Title can not be empty!"
       redirect_to root_path
     end
   end

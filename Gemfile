@@ -74,3 +74,5 @@ gem 'dotenv-rails'
 gem 'omniauth-rails_csrf_protection'
 
 gem "tailwindcss-rails", "~> 2.3"
+
+gem "will_paginate"
