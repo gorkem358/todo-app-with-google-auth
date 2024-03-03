@@ -1,80 +1,100 @@
-<%= form_with(model: Todo.new, class: "my-10") do |form| %>
-  <div class="border-b border-white/10 pb-12 ">
-    <h2 class="text-base font-semibold leading-7 text-white">Todo List Form</h2>
+<%= form_with(model: Todo.new, class: "my-10 flex justify-center items-center") do |form| %>
+  <div class="border-b border-white/10 py-2.5 rounded-md px-3 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-primary w-full">
+    <h2 class="text-base font-semibold leading-7 ">Todo Create Form</h2>
     <p class="mt-1 text-sm leading-6 text-gray-400">Use form to add new todo's</p>
-    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-      <div class="sm:col-span-3">
-        <label for="title" class="block text-sm font-medium leading-6 text-white">Title</label>
-        <div class="mt-2">
-          <%= form.text_field :title, placeholder: "Todo Title", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
-        </div>
+
+    <div class="mt-10">
+      <div class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-primary w-full">
+        <label for="title" class="block text-xs font-medium text-gray-900">Title</label>
+        <%= form.text_field :title, placeholder: "Todo Title", class: "block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" %>
       </div>
     </div>
-    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-      <div class="sm:col-span-3">
-        <label for="description" class="block text-sm font-medium leading-6 text-white">Description</label>
-        <div class="mt-2">
-          <%= form.text_field :description, placeholder: "Todo Description", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
-        </div>
+
+    <div class="mt-10">
+      <div class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-primary w-full">
+        <label for="description" class="block text-xs font-medium text-gray-900">Description</label>
+        <%= form.text_field :description, placeholder: "Todo Description", class: "block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" %>
       </div>
     </div>
-    <div class="relative flex gap-x-3 mt-8">
+
+    <div class="flex gap-x-3 mt-8">
       <div class="flex h-6 items-center">
-        <%= form.check_box :is_completed, id:"is_completed", type:"checkbox", class:"h-4 w-4 rounded border-white/10 bg-white/5 text-indigo-600 focus:ring-indigo-600 focus:ring-offset-gray-900" %>
+        <%= form.check_box :is_completed, id: "is_completed", type: "checkbox", class: "h-4 w-4 rounded border-white/10 bg-white/5 text-indigo-600 focus:ring-indigo-600 focus:ring-offset-gray-900" %>
       </div>
       <div class="text-sm leading-6">
-        <label for="is_completed" class="font-medium text-white">Is Completed?</label>
+        <label for="is_completed" class="font-medium ">Is Completed?</label>
       </div>
     </div>
-  </div>
-  <div class="mt-6 flex items-center justify-end gap-x-6">
-    <%= form.submit :Submit, class: "rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500" %>
+    <div class="flex mt-8 justify-end">
+      <%= form.button :button, type: :submit, class: "bg-none" do %>
+        <i class="text-2xl text-green-500 icofont-save" aria-hidden="true"></i>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
 
 <% if @todos.present? %>
-<div class="bg-gray-900">
-  <div class="mx-auto max-w-7xl">
-    <div class="bg-gray-900 py-10">
-      <div class="px-4 sm:px-6 lg:px-8">
-        <div class="mt-8 flow-root">
-          <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-              <table class="min-w-full divide-y divide-gray-700">
-                <thead>
-                <tr>
-                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-0">Title</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Description</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Completed</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Created At</th>
-                  <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                    <span class="sr-only">Edit</span>
-                  </th>
-                </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-800">
-                <% @todos.each do |todo| %>
-                  <tr>
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0"><%= todo.title %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"><%= todo.description %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"><%= todo.is_completed %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"><%= todo.created_at.strftime("%d-%m-%Y %H:%M") %></td>
-                    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                      <%= link_to "Edit", edit_todo_path(todo), class: "text-indigo-400 hover:text-indigo-300" %>
-                      <%= button_to "Delete", todo_path(todo), method: :delete, class:"text-indigo-400 hover:text-indigo-300" %>
-                    </td>
-                  </tr>
+  <div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead>
+          <tr>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Title</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Created</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">#</th>
+          </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+          <% @todos.each do |todo| %>
+            <tr>
+              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"><%= todo.title %></td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= todo.description %></td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                <div class="flex flex-row gap-x-2 items-end">
+                  <%= form_for todo, url: toggle_todo_path(todo), method: :post do |f| %>
+                    <%= f.button :button, type: :submit, class: "bg-none" do %>
+                      <%= image_tag "refresh.svg", width:"18px"%>
+                    <% end %>
+                  <% end %>
+
+                  <% if todo.is_completed %>
+                  <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-green-500 bg-green-100/60">
+                    <h2 class="flex items-center gap-2 text-sm font-normal">
+                      <i class="text-base icofont-tick-mark"></i>
+                      Completed
+                    </h2>
+                  </div>
+                <% else %>
+                    <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-yellow-500 bg-yellow-100/60">
+                      <h2 class="flex items-center gap-2 text-sm font-normal">
+                        <i class="text-base icofont-hour-glass"></i>
+                        In Progress
+                      </h2>
+                    </div>
                 <% end %>
-                <!-- More people... -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+                </div>
+              </td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= todo.created_at.strftime("%d-%m-%Y %H:%M") %></td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 flex flex-col">
+                <div class="flex flex-row gap-x-2">
+                  <%= link_to edit_todo_path(todo), class: "bg-none text-primary  font-bold py-2 px-4" do %>
+                    <i class="text-2xl text-sky-500 icofont-pencil-alt-2" aria-hidden="true"></i>
+                  <% end %>
+
+                  <%= button_to todo_path(todo), method: :delete, class: "bg-none font-bold py-2 px-4" do %>
+                    <i class="text-red-500 text-2xl icofont-trash" aria-hidden="true"></i>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-</div>
-
 <% end %>

@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     get '/signup', to: 'users#new'
     post '/signup', to: 'users#create'
     get '/auth/:provider/callback', to: 'sessions#omniauth'
-    resources :todos, only: [:index, :create, :edit, :update, :destroy]
+    resources :todos, only: [:index, :create, :edit, :update, :destroy]do
+      member do
+        post :toggle
+      end
+    end
 
 end

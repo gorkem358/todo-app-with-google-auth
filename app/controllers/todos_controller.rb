@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+  before_action :require_login
   def index
     if current_user
       @todos = current_user.todos.all
@@ -27,6 +28,12 @@ class TodosController < ApplicationController
     end
   end
 
+  def toggle
+    @todo = Todo.find(params[:id])
+    @todo.update(is_completed: !@todo.is_completed)
+
+    redirect_to todos_path
+  end
 
   def todo_params
     params.require(:todo).permit(:title, :description, :is_completed)

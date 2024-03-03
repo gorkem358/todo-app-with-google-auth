@@ -5,31 +5,42 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-  <% if @current_user.present? %>
-    <header class="bg-gray-900">
-      <nav class="flex flex-col items-center justify-between p-6 mx-auto max-w-7xl">
-        <div class="text-white">
-          <h1>Welcome <%= @current_user.username %>!</h1>
-        </div>
-        <div class="flex justify-end mt-4">
-          <%= button_to "Logout", logout_path, method: :delete, class:"text-white" %>
-        </div>
-      </nav>
-    </header>
-  <% end %>
+  <body class="overflow-x-hidden bg-slate-100">
 
-  <section class="bg-gray-50 dark:bg-gray-900">
-    <div class="flex flex-col items-center px-6 py-8 mx-auto md:h-screen">
+  <section class="flex flex-col min-h-screen w-screen bg-white transition-all relative">
+      <header class="w-screen bg-white shadow-md">
+        <nav class="mx-auto grid grid-cols-3 container items-center py-2" aria-label="Global">
+          <div class="flex items-center gap-x-12 justify-self-start">
+            <a href="/" class="-m-1.5 p-1.5 shrink-0">
+              <%= image_tag "hotelrunner.png", class:"h-20 w-auto"%>
+            </a>
+          </div>
+          <div class="justify-self-center">
+            <span class="block text-2xl font-extrabold">Todo App</span>
+          </div>
+          <div class="flex gap-x-5 justify-self-end items-center">
 
-      <%= yield %>
-    </div>
+            <% if @current_user.present? %>
+              <span class="text-small">Welcome <%= @current_user.username %>!</span>
+              <span class="h-6 w-px bg-gray-200" aria-hidden="true"></span>
+              <%= button_to "Logout", logout_path, method: :delete %>
+            <% else %>
+              <%= button_to "Login",  login_path, method: :get %>
+            <% end %>
+          </div>
+        </nav>
+      </header>
+
+    <main class="flex-grow py-4">
+      <div class="container md:px-0 px-3 mx-auto">
+        <%= yield %>
+      </div>
+    </main>
   </section>
   </body>
 </html>
