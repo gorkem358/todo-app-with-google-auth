@@ -24,13 +24,14 @@ class TodosController < ApplicationController
 
   def update
     @todo = Todo.by_user(current_user).find(params[:id])
+
     if @todo.update(todo_params)
       redirect_to root_path
     else
-      render :edit
+      flash[:error] = "Title can not be empty!"
+      redirect_to edit_todo_path(@todo)
     end
   end
-
   def toggle
     @todo = Todo.find(params[:id])
     @todo.update(is_completed: !@todo.is_completed)
