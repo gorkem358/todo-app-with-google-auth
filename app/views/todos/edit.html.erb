@@ -33,6 +33,13 @@
       </div>
     </div>
 
+    <div class="mt-10">
+      <div class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-primary w-full">
+        <label for="deadline_at" class="block text-xs font-medium text-gray-900">Deadline</label>
+        <%= form.datetime_local_field :deadline_at, class: "block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" %>
+      </div>
+    </div>
+
     <div class="flex gap-x-3 mt-8">
       <div class="flex h-6 items-center">
         <%= form.check_box :is_completed, id: "is_completed", type: "checkbox", class: "h-4 w-4 rounded border-white/10 bg-white/5 text-indigo-600 focus:ring-indigo-600 focus:ring-offset-gray-900" %>

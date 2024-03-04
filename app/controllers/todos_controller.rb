@@ -11,7 +11,7 @@ class TodosController < ApplicationController
     if @todo.save
       redirect_to root_path
     else
-      flash[:error] = "Title can not be empty!"
+      flash[:error] = @todo.errors.full_messages.to_sentence
       redirect_to root_path
     end
   end
@@ -24,23 +24,21 @@ class TodosController < ApplicationController
 
   def update
     @todo = Todo.by_user(current_user).find(params[:id])
-
     if @todo.update(todo_params)
       redirect_to root_path
     else
-      flash[:error] = "Title can not be empty!"
+      flash[:error] = @todo.errors.full_messages.to_sentence
       redirect_to edit_todo_path(@todo)
     end
   end
   def toggle
     @todo = Todo.find(params[:id])
     @todo.update(is_completed: !@todo.is_completed)
-
     redirect_to todos_path
   end
 
   def todo_params
-    params.require(:todo).permit(:title, :description, :is_completed)
+    params.require(:todo).permit(:title, :description, :deadline_at, :is_completed)
   end
 
   def destroy
