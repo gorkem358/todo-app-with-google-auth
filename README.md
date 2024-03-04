@@ -41,9 +41,7 @@ bundle install
 ```
 
 ### 4 - Create a Google Cloud Platform project and enable the Google OAuth API (optional)
-I have pushed my own projects GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in .example.env file. 
-<br>
-Remove the .example part of file name, keep it as .env. To use my project credentials keep content as it is, otherwise use your own.
+Remove the .example part of .example.env file, keep it as .env. To use my project credentials copy credentials below, otherwise use your own.
 ```
 GOOGLE_CLIENT_ID="221793251341-8n9npb6q50nmbisr3k63amdc510a6tkn.apps.googleusercontent.com"
 GOOGLE_CLIENT_SECRET="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"
