@@ -45,8 +45,8 @@ I have pushed my own projects GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in .exam
 <br>
 Remove the .example part of file name, keep it as .env. To use my project credentials keep content as it is, otherwise use your own.
 ```
-GOOGLE_CLIENT_ID="your GOOGLE_CLIENT_ID"
-GOOGLE_CLIENT_SECRET="your GOOGLE_CLIENT_SECRET"
+GOOGLE_CLIENT_ID="221793251341-8n9npb6q50nmbisr3k63amdc510a6tkn.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="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"
 ```
 
 ### 5 - Create database then run migrations:
