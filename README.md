@@ -52,7 +52,12 @@ GOOGLE_CLIENT_SECRET="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"
 rails db:create
 rails db:migrate
 ```
-### 6 - Start the application:
+
+### 6 - Build style file once to use it in project with no error
+```
+rails tailwindcss:build
+```
+### 7 - Start the application:
 ```
 rails s
 ```
